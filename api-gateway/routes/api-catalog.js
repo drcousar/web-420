@@ -1,16 +1,21 @@
-/*
-============================================
-; Title:  API Gateway Part II
-; Author: Don Cousar
-; Date:   12 May 2019
-; Description: API Routes
-;===========================================
-*/ 
-var express = require('express');
-var router = express.Router();
-var auth_controller = require('../controllers/authController');
-// POST request for registering a user
-router.post('/auth/register', auth_controller.user_register);
-// GET request for verifying user tokens
-router.get('/auth/token', auth_controller.user_token);
+/**
+ * ===========================
+ * Title: api-gateway-app
+ * Name: api-catalog.js
+ * Author: Donald Cousar
+ * Date: 5/26/2019
+ * ===========================
+ */
+
+const router = require("express").Router();
+const authController = require("../controllers/authController");
+
+// Define routes
+
+// POST for user registration
+router.post("/auth/register", authController.user_register);
+
+// GET for user token
+router.get("/auth/token", authController.user_token);
+
 module.exports = router;

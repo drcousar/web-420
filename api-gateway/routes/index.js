@@ -1,17 +1,17 @@
-/*
-============================================
-; Title:  API Gateway Part II
-; Author: Don Cousar
-; Date:   12 May 2019
-; Description: API Catalog
-;===========================================
-*/ 
-var express = require('express');
-var router = express.Router();
+/**
+ * ===========================
+ * Title: api-gateway-app
+ * Name: index.js
+ * Author: Donald Cousar
+ * Date: 5/26/2019
+ * ===========================
+ */
+
+const router = require("express").Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get("/", (req, res, next) => {
+  res.render("index", { title: "Express" });
 });
 
 module.exports = router;
