@@ -26,7 +26,7 @@ mongoose.Promise = require("bluebird");
 // Set up connection string and connect
 mongoose
   .connect(
-    "mongodb://admin:admin@ds121588.mlab.com:21588/mean-library",
+    "mongodb+srv://admin:admin@cluster0-qr21r.mongodb.net/api-gateway?retryWrites=true",
     {
       promiseLibrary: require("bluebird")
     }
