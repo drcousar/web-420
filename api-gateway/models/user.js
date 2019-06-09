@@ -15,7 +15,9 @@ const mongoose = require("mongoose"),
     email: { type: String, required: [true, "email is required"] }
   });
 
-module.exports = mongoose.model("User", userSchema);
+var User = module.exports = mongoose.model('User', userSchema)
+
+//module.exports = mongoose.model("User", userSchema);
 
 module.exports.add = async user => {
   return await user.save();
@@ -24,4 +26,10 @@ module.exports.add = async user => {
 module.exports.getById = (id, callback) => {
   const query = { _id: id };
   User.findById(query, callback);
+};
+
+//Query for finding individual users by email address
+module.exports.getOne = (e, callback) => {
+  var query = {email: e};
+  User.findOne(query, callback);
 };
