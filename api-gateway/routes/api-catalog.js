@@ -9,14 +9,14 @@
 
 const router = require("express").Router();
 const authController = require("../controllers/authController");
-
+const checkToken = require("../check-token");
 // Define routes
 
 // POST for user registration
 router.post("/auth/register", authController.user_register);
 
 // GET for user token
-router.get("/auth/token", authController.user_token);
+router.get("/auth/token", checkToken, authController.user_token);
 
 // Allow user login requests
 router.post("/auth/login", authController.user_login);

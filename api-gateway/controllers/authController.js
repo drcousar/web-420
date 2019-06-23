@@ -42,33 +42,14 @@ exports.user_register = (req, res) => {
 };
 
 // auth token get
-exports.user_token = (req, res) => {
+exports.user_token = function (req, res) {
   try {
-    // Check for token in header
-    const token = req.headers["x-access-token"];
-    if (!token) {
-      res
-        .status(401)
-        .send({ auth: false, message: "Error, no token provided" });
-    }
-    // We found token, verify it
-    jwt.verify(token, config.web.secret, (err, decoded) => {
-      if (err) {
-        res
-          .status(500)
-          .send({ auth: false, message: "Failed to authenticate token" });
-      }
-      // Find user in db by decoded id
-      User.findById(decoded.id)
-        .then(user => {
-          if (!user) {
-            res.status(404).send("User not found");
-          }
-          res.status(200).send(user);
-        })
-        .catch(err => {
-          res.status(500).send("Error finding that user");
-        });
+    User.getById(req.userId, function(err, user) {
+      if(err) return res.status(500).send('There was a problem finding the user');
+
+      if (!user) return res.status(404).send('No user found');
+
+      res.status(200).send(user);
     });
     // problem with headers or something else
   } catch (e) {
